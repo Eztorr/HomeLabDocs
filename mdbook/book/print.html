@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-39d8dd6a.js";
+            window.path_to_searchindex_js = "searchindex-3e5fde9b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-dae5e7fa.js"></script>
+        <script src="toc-cfe1f0bf.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -542,8 +542,30 @@ echo "Logs: /var/log/wg-portal.log"
 </code></pre>
 <p>After executing this script all you have to do is go into the config.yaml and change it so the web external url is http://<your machine="" local="" ip="">:8888. It is also reccommended to change the default credentials. Also ensure to restart the wg-portal service.</your></p>
 <div style="break-before: page; page-break-before: always;"></div>
+<h1 id="how-to-allow-promox-to-use-non-subscription-repository-to-get-updates"><a class="header" href="#how-to-allow-promox-to-use-non-subscription-repository-to-get-updates">How to allow Promox to use non-subscription repository to get updates</a></h1>
+<p>For latest Information on this topic <a href="https://pve.proxmox.com/wiki/Package_Repositories">click here.</a></p>
+<p>You Could use either the Promox GUI or the CLI to enact this change</p>
+<h1 id="gui"><a class="header" href="#gui">GUI</a></h1>
+<ol>
+<li>Click on the node you want to edit</li>
+<li>Go to updates and then repositories</li>
+<li>Click add
+<img src="images/proxmox1.png" alt="image"></li>
+<li>Select the non-subscription option from the dropdown menu
+<img src="images/proxmox2.png" alt="image"></li>
+<li>Click add</li>
+</ol>
+<h1 id="cli"><a class="header" href="#cli">CLI</a></h1>
+<p>Copy and paste the following into <code>/etc/apt/sources.list.d/proxmox.sources</code></p>
+<pre><code>Types: deb
+URIs: http://download.proxmox.com/debian/pve
+Suites: trixie
+Components: pve-no-subscription
+Signed-By: /usr/share/keyrings/proxmox-archive-keyring.gpg
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
 <h1 id="scripts"><a href="#scripts" class="header">Scripts</a></h1>
-<p>yes</p>
+<p>This section is populated with custom scripts to automate tasks. Some of these scripts may be featured in other places as well.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="wireguard-with-wg-portal-v210-setupscript-1"><a class="header" href="#wireguard-with-wg-portal-v210-setupscript-1">WireGuard with wg-portal v2.1.0 setupscript</a></h1>
 <p>This script sets up wireguard on a container with wg-portal installed for a web interface. Documentation for wg-portal can be found here <a href="https://wgportal.org/latest/documentation/overview/">https://wgportal.org/latest/documentation/overview/</a></p>
