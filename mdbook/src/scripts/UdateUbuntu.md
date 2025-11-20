@@ -7,8 +7,7 @@ Script to update Ubuntu.
 # Ubuntu Update & Cleanup Script
 # ------------------------------------------------------------
 # This script updates an Ubuntu system, removes unused packages,
-# cleans old cache files, and ensures the system is in a tidy,
-# optimized state.
+# and cleans old cache files.
 
 set -e
 

@@ -1,5 +1,7 @@
-Edited script to have portal not running as root TEST
+Edited script to have portal not running as root. THIS DOES NOT WORK
 
+wg-portal needs to be run as root in order to create the proper WireGuard interfaces
+Unless proper perms are givin to the wg-portal user using sudo, THIS WILL NOT WORK
 ```
 #!/bin/bash
 # Complete setup script for WireGuard, NAT, and wg-portal with systemd autostart and config

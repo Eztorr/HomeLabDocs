@@ -7,10 +7,10 @@
 3. Create a script to serve the mdbook:
 ```
 #!/bin/bash
-
+#Script to serve mdbook over http, used for system service
 set -e
-#Script to launch mdbook over http
 
+#serves the mdbook over port 3000 unless specified otherwise with -p
 sudo mdbook serve  /path/to/mdbook -n localipaddr
 
 ```
@@ -24,7 +24,7 @@ useradd mdbook
 nano /etc/systemd/system/mdbook.service
 ```
 
-	- Create your service in this file
+- Create your service in this file
 	
 	```
 	[Unit]
@@ -52,19 +52,22 @@ systemctl start mdbook.service
 
 # Using Github
 
-- Make sure to install git using ```apt install git```
-- Use ```git clone``` to clone desired repo
-- Set up a cronjob by using ```crontab -e``` to pull change from a repo
-	1. I used a script call pull.sh
+Make sure to install git using ```apt install git```
+Use ```git clone``` to clone desired repo
+Set up a cronjob by using ```crontab -e``` to pull change from a repo
+	- I used a script call pull.sh
 	```
 	#!/bin/bash
 
 	set -e
-
+	
+	#changes working directory to the one housing the git repo
 	cd HomeLabDocs/
 
+	#pulls from remote
 	git pull origin mdbook
 	```
-	2. The cronjob I used pulled from my repo every day at 12am
+	- The cronjob I used pulled from my repo every day at 12am
+	
 	``` 0 0 * * * /home/mdbook/mdbook/pull.sh ```
 

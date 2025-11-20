@@ -2,7 +2,7 @@
 
 - [Wireguard](./OLDwg-portalsetupdoc.md)
 	- [WireGuard Script](./scripts/OLDwg-portalsetup.md)
-- [Updateing Promox](./allownonsubupdates.md)
+- [Updating Promox](./allownonsubupdates.md)
 - [mdbook](./mdbook.md)
 - [Scripts](./scripts/scripts.md)
 	- [WireGuard Script](./scripts/OLDwg-portalsetup2.md)

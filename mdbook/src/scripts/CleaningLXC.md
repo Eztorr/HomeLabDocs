@@ -21,7 +21,7 @@ Works on Ubuntu
 #     cloned images or VM templates.
 # ---------------------------------------------------------------------------
 
-set -e  # Exit immediately if any command fails
+set -e 
 
 echo "=== Step 1: Updating and upgrading all packages ==="
 sudo apt -y update && sudo apt -y dist-upgrade
@@ -39,9 +39,5 @@ echo "=== Step 4: Clearing machine-id ==="
 sudo truncate -s 0 /etc/machine-id
 
 echo "=== Completed successfully! ==="
-echo "System updated and cleaned."
-echo " SSH host keys removed."
-echo " Machine ID cleared."
-echo
 echo "  If this system will continue to be used, reboot it now to regenerate new SSH keys."
 ```

@@ -1,5 +1,10 @@
 # How to allow access to network resources via wireguard VPN
 
+
+## **Old Guide Alert**
+**While this guide works, it is messy and should be remade fully.**
+**If looking to make wireguard container use either script as instructions**
+
 1. add `net.ipv4.ip_forward=1` to `/etc/sysctl.conf`using the following commands
 
 `echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf` `sudo sysctl -w net.ipv4.ip_forward=1`

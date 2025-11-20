@@ -9,7 +9,7 @@ This script also makes it so local network resources can be accessed while using
 # Complete setup script for WireGuard, NAT, and wg-portal with systemd autostart and config
 # For Debian/Ubuntu-based systems
 
-set -e  # Exit if any command fails
+set -e  
 
 echo "=== Installing required packages ==="
 sudo apt update
