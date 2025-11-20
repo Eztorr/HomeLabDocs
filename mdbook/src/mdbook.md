@@ -23,7 +23,9 @@ useradd mdbook
 ```
 nano /etc/systemd/system/mdbook.service
 ```
+
 	- Create your service in this file
+	
 	```
 	[Unit]
     Description=mdbook web service
