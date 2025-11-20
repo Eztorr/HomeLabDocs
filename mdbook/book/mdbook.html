@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>WireGuard Script DOES NOT WORK - HomeLabDocs</title>
+        <title>mdbook - HomeLabDocs</title>
 
 
         <!-- Custom HTML head -->
@@ -12,33 +12,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../css/general-2459343d.css">
-        <link rel="stylesheet" href="../css/chrome-9dfbd86b.css">
-        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-9dfbd86b.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "../";
+            const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-c99ea858.js";
+            window.path_to_searchindex_js = "searchindex-c99ea858.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-ad85d2e8.js"></script>
+        <script src="toc-ad85d2e8.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -105,7 +105,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -140,7 +140,7 @@
                     <h1 class="menu-title">HomeLabDocs</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -174,208 +174,104 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <p>Edited script to have portal not running as root. THIS DOES NOT WORK</p>
-<p>wg-portal needs to be run as root in order to create the proper WireGuard interfaces
-Unless proper perms are givin to the wg-portal user using sudo, THIS WILL NOT WORK</p>
+                        <h1 id="making-a-container-to-run-mdbook"><a class="header" href="#making-a-container-to-run-mdbook">Making a container to run mdbook</a></h1>
+<ol>
+<li>
+<p>install mdbook using <code>apt install mdbook</code></p>
+</li>
+<li>
+<p>Follow the mdbook documentation <a href="https://rust-lang.github.io/mdBook/index.html">here</a> to create an mdbook</p>
+<ul>
+<li>My mdbook is on github at https://github.com/Eztorr/HomeLabDocs/tree/mdbook</li>
+</ul>
+</li>
+<li>
+<p>Create a script to serve the mdbook:</p>
+</li>
+</ol>
 <pre><code>#!/bin/bash
-# Complete setup script for WireGuard, NAT, and wg-portal with systemd autostart and config
-# For Debian/Ubuntu-based systems
+#Script to serve mdbook over http, used for system service
+set -e
 
-set -e  # Exit if any command fails
+#serves the mdbook over port 3000 unless specified otherwise with -p
+sudo mdbook serve  /path/to/mdbook -n localipaddr
 
-echo "=== Installing required packages ==="
-sudo apt update
-sudo apt install -y wireguard curl netfilter-persistent iptables
-
-echo "=== Enabling IPv4 forwarding ==="
-if ! grep -q "^net.ipv4.ip_forward=1" /etc/sysctl.conf; then
-    echo "net.ipv4.ip_forward=1" | sudo tee -a /etc/sysctl.conf
-else
-    echo "IPv4 forwarding already enabled in /etc/sysctl.conf"
-fi
-
-sudo sysctl -w net.ipv4.ip_forward=1
-sudo sysctl -p
-
-# Detect main network interface automatically
-NET_IFACE=$(ip route show default | awk '/default/ {print $5}')
-echo "=== Detected main interface: $NET_IFACE ==="
-
-echo "=== Setting up NAT (iptables) ==="
-sudo iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o "$NET_IFACE" -j MASQUERADE
-sudo iptables -t nat -A POSTROUTING -s 10.11.12.1/24 -o "$NET_IFACE" -j MASQUERADE
-
-echo "=== Saving iptables rules ==="
-sudo netfilter-persistent save
-
-echo "=== Creating wg-portal user if not present ==="
-if ! id "wg-portal" &amp;&gt;/dev/null; then
-    sudo useradd --system --create-home --shell /usr/sbin/nologin wg-portal
-    echo "User wg-portal created."
-else
-    echo "User wg-portal already exists."
-fi
-
-echo "=== Downloading wg-portal ==="
-curl -L -o wg-portal https://github.com/h44z/wg-portal/releases/download/v2.1.0/wg-portal_linux_amd64
-
-echo "=== Installing wg-portal ==="
-sudo mkdir -p /opt/wg-portal
-sudo install wg-portal /opt/wg-portal/
-
-echo "=== Creating wg-portal config directory and config.yaml ==="
-sudo mkdir -p /opt/wg-portal/config
-
-sudo tee /opt/wg-portal/config/config.yaml &gt;/dev/null &lt;&lt;'EOF'
-core:
-  admin_user: admin@wgportal.local
-  admin_password: wgportal-default
-  admin_api_token: ""
-  disable_admin_user: false
-  editable_keys: true
-  create_default_peer: false
-  create_default_peer_on_creation: false
-  re_enable_peer_after_user_enable: true
-  delete_peer_after_user_deleted: false
-  self_provisioning_allowed: false
-  import_existing: true
-  restore_state: true
-
-backend:
-  default: local
-  local_resolvconf_prefix: tun.
-
-advanced:
-  log_level: info
-  log_pretty: false
-  log_json: false
-  start_listen_port: 51820
-  start_cidr_v4: 10.11.12.0/24
-  start_cidr_v6: fdfd:d3ad:c0de:1234::0/64
-  use_ip_v6: true
-  config_storage_path: ""
-  expiry_check_interval: 15m
-  rule_prio_offset: 20000
-  route_table_offset: 20000
-  api_admin_only: true
-  limit_additional_user_peers: 0
-
-database:
-  debug: false
-  slow_query_threshold: "0"
-  type: sqlite
-  dsn: data/sqlite.db
-  encryption_passphrase: ""
-
-statistics:
-  use_ping_checks: true
-  ping_check_workers: 10
-  ping_unprivileged: false
-  ping_check_interval: 1m
-  data_collection_interval: 1m
-  collect_interface_data: true
-  collect_peer_data: true
-  collect_audit_data: true
-  listening_address: :8787
-
-mail:
-  host: 127.0.0.1
-  port: 25
-  encryption: none
-  cert_validation: true
-  username: ""
-  password: ""
-  auth_type: plain
-  from: Wireguard Portal &lt;noreply@wireguard.local&gt;
-  link_only: false
-  allow_peer_email: false
-
-auth:
-  oidc: []
-  oauth: []
-  ldap: []
-  webauthn:
-    enabled: true
-  min_password_length: 16
-  hide_login_form: false
-
-web:
-  listening_address: :8888
-  external_url: http://localhost:8888
-  site_company_name: WireGuard Portal
-  site_title: WireGuard Portal
-  session_identifier: wgPortalSession
-  session_secret: very_secret
-  csrf_secret: extremely_secret
-  request_logging: false
-  expose_host_info: false
-  cert_file: ""
-  key_File: ""
-
-webhook:
-  url: ""
-  authentication: ""
-  timeout: 10s
-EOF
-
-echo "=== Setting ownership of /opt/wg-portal to wg-portal user ==="
-sudo chown -R wg-portal:wg-portal /opt/wg-portal
-
-echo "=== Creating systemd service for wg-portal (non-root user) ==="
-cat &lt;&lt;EOF | sudo tee /etc/systemd/system/wg-portal.service &gt;/dev/null
-[Unit]
-Description=WireGuard Portal Service
-After=network.target
+</code></pre>
+<ol start="4">
+<li>create a user called mdbook using</li>
+</ol>
+<pre><code>useradd mdbook
+</code></pre>
+<ol start="5">
+<li>Create a service by using the command</li>
+</ol>
+<pre><code>nano /etc/systemd/system/mdbook.service
+</code></pre>
+<ul>
+<li>
+<p>Create your service in this file</p>
+<pre><code>[Unit]
+Description=mdbook web service
 
 [Service]
-ExecStart=/opt/wg-portal/wg-portal
-WorkingDirectory=/opt/wg-portal
-Restart=always
-User=wg-portal
-Group=wg-portal
-Environment="WG_PORTAL_CONFIG=/opt/wg-portal/config/config.yaml"
-StandardOutput=append:/var/log/wg-portal.log
-StandardError=append:/var/log/wg-portal.log
+ExecStart=/path/to/script
+User=mdbook
+Restart=always 
+RestartSec=3 
 
 [Install]
 WantedBy=multi-user.target
-EOF
 
-echo "=== Creating log file and setting proper permissions ==="
-sudo touch /var/log/wg-portal.log
-sudo chown wg-portal:wg-portal /var/log/wg-portal.log
-
-echo "=== Reloading systemd and enabling wg-portal service ==="
-sudo systemctl daemon-reload
-sudo systemctl enable wg-portal.service
-sudo systemctl start wg-portal.service
-
-echo "=== Setup Complete ==="
-echo " WireGuard installed"
-echo " IPv4 forwarding enabled"
-echo " NAT configured and persistent"
-echo " wg-portal user created"
-echo " wg-portal installed with config"
-echo " wg-portal running as NON-ROOT user and auto-starts on boot"
-echo
-echo "You can check wg-portal status with:"
-echo "  sudo systemctl status wg-portal"
-echo
-echo "Access wg-portal web interface at: http://&lt;your-server-ip&gt;:8888"
-echo "Login with user: admin@wgportal.local  password: wgportal-default"
-echo
-echo "Logs: /var/log/wg-portal.log"
 </code></pre>
+</li>
+</ul>
+<ol start="6">
+<li>
+<p>use <code>sudo visudo</code> and add the line <code>mdbook ALL=(root) NOPASSWD: /bin/mdbook</code> to allow the mdbook command to be used by the user mdbook</p>
+</li>
+<li>
+<p>reload the systemd daemon and start the service by using the commands</p>
+</li>
+</ol>
+<pre><code>systemctl reload-daemon
+systemctl start mdbook.service
+</code></pre>
+<ol start="8">
+<li>mdbook should be up on http://localipaddr:3000</li>
+</ol>
+<h1 id="using-github"><a class="header" href="#using-github">Using Github</a></h1>
+<p>Make sure to install git using <code>apt install git</code></p>
+<p>Use <code>git clone</code> to clone desired repo</p>
+<p>Set up a cronjob by using <code>crontab -e</code> to pull change from a repo</p>
+<ul>
+<li>
+<p>I used a script call pull.sh</p>
+<pre><code>#!/bin/bash
+
+set -e
+
+#changes working directory to the one housing the git repo
+cd HomeLabDocs/
+
+#pulls from remote
+git pull origin mdbook
+</code></pre>
+</li>
+<li>
+<p>The cronjob I used pulled from my repo every day at 12am</p>
+<p><code>0 0 * * * /home/mdbook/mdbook/pull.sh</code></p>
+</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../scripts/OLDwg-portalsetup2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="allownonsubupdates.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../scripts/UdateUbuntu.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="scripts/scripts.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -385,11 +281,11 @@ echo "Logs: /var/log/wg-portal.log"
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../scripts/OLDwg-portalsetup2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="allownonsubupdates.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../scripts/UdateUbuntu.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="scripts/scripts.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
@@ -425,13 +321,13 @@ echo "Logs: /var/log/wg-portal.log"
         </script>
 
 
-        <script src="../elasticlunr-ef4e11c1.min.js"></script>
-        <script src="../mark-09e88c2c.min.js"></script>
-        <script src="../searcher-c2a407aa.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
 
-        <script src="../clipboard-1626706a.min.js"></script>
-        <script src="../highlight-abc7f01d.js"></script>
-        <script src="../book-a0b12cfe.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
 
