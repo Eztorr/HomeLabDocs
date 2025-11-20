@@ -76,3 +76,6 @@ Set up a cronjob by using ```crontab -e``` to pull change from a repo
 	
 	``` 0 0 * * * /home/mdbook/mdbook/pull.sh ```
 
+**If you test your mdbook on your machine before pushing changes it could cause merge conflicts**
+**If this happens add a line to the script that deletes the book directory ex: rm -r /path/to/mdbook/book**
+
