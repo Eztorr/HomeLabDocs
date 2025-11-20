@@ -2,8 +2,8 @@
 
 
 # **Old Guide Alert**
-** While this guide works, it is messy and should be remade fully. **
-** If looking to make wireguard container use either script as instructions **
+**While this guide works, it is messy and should be remade fully.**
+**If looking to make wireguard container use either script as instructions**
 
 1. add `net.ipv4.ip_forward=1` to `/etc/sysctl.conf`using the following commands
 
