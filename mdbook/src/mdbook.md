@@ -53,9 +53,13 @@ systemctl start mdbook.service
 # Using Github
 
 Make sure to install git using ```apt install git```
+
 Use ```git clone``` to clone desired repo
+
 Set up a cronjob by using ```crontab -e``` to pull change from a repo
+	
 	- I used a script call pull.sh
+	
 	```
 	#!/bin/bash
 
@@ -67,6 +71,7 @@ Set up a cronjob by using ```crontab -e``` to pull change from a repo
 	#pulls from remote
 	git pull origin mdbook
 	```
+	
 	- The cronjob I used pulled from my repo every day at 12am
 	
 	``` 0 0 * * * /home/mdbook/mdbook/pull.sh ```
