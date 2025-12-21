@@ -4,6 +4,7 @@
 	- [WireGuard Script](./scripts/OLDwg-portalsetup.md)
 - [Updating Promox](./allownonsubupdates.md)
 - [mdbook](./mdbook.md)
+- [ansible test](./ansiblemdbooktest.md)
 - [Scripts](./scripts/scripts.md)
 	- [WireGuard Script](./scripts/OLDwg-portalsetup2.md)
 	- [WireGuard Script DOES NOT WORK](./scripts/wg-portal_setup_script.md)
